@@ -14,7 +14,7 @@
        modules = [
          (darwin + "/pkgs/darwin-installer/installer.nix") 
          module
-       ]
+       ];
      }).system;
    };
  };
