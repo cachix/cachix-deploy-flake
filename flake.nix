@@ -7,7 +7,7 @@
  outputs = { self, darwin }: {
    lib = pkgs: {
      # TODO: validate opts
-     json = opts: pkgs.writeText "cachix-deploy.json" (builtins.toJSON opts);
+     spec = opts: pkgs.writeText "cachix-deploy.json" (builtins.toJSON opts);
      nixos = module: (pkgs.nixos module).toplevel;
      darwin = module: (darwin.lib.darwinSystem {
        system = pkgs.system;
