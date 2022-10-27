@@ -12,7 +12,7 @@
      darwin = module: (darwin.lib.darwinSystem {
        system = pkgs.system;
        modules = [
-         (darwin + "/pkgs/darwin-installer/installer.nix") 
+         (darwin + "/pkgs/darwin-installer/installer.nix")
          module
        ];
      }).system;
