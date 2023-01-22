@@ -4,7 +4,7 @@
    darwin.url = "github:LnL7/nix-darwin";
    home-manager.url = "github:nix-community/home-manager";
    home-manager.inputs.nixpkgs.follows = "nixpkgs";
-   nixos-remote.url = "github:numtide/nixos-remote";
+   nixos-remote.url = "github:numtide/nixos-remote/error-checks";
    nixos-remote.inputs.nixpkgs.follows = "nixpkgs";
    nixos-remote.inputs.disko.follows = "disko";
    disko.url = "github:nix-community/disko";
