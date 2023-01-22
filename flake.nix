@@ -21,6 +21,8 @@
         bootstrapHetzner = pkgs.writeScriptBin "bootstrap-hetzner" ''
           #!${pkgs.runtimeShell}
 
+          set -e
+
           # error out if not two arguments are given
           if [ "$#" -ne 3 ]; then
             echo "Usage: $0 <IP> <agent-hostname> <cachix-agent-token-path>"
@@ -79,7 +81,7 @@
               disko.devices = diskoDevices;
               boot.loader.grub.devices = grubDevices;
               # enable nvme https://github.com/nix-community/disko/issues/96
-              boot.initrd.availableKernelModules = [ "nvme" ];
+              boot.initrd.availableKernelModules = [ "nvme" "md_mod" "raid1" ];
               
               # add root ssh key
               users.users.root.openssh.authorizedKeys.keys = [ sshPubKey ];
