@@ -14,7 +14,7 @@
  outputs = { self, nixpkgs, darwin, home-manager, nixos-remote, disko, ... }: {
 
    packages = let 
-       forAllSystems = nixpkgs.lib.genAttrs [ "x86_64-linux" "i686-linux" "x86_64-darwin" "aarch64-linux" "aarch64-darwin" ];
+       forAllSystems = nixpkgs.lib.genAttrs [ "x86_64-linux" "x86_64-darwin" "aarch64-linux" "aarch64-darwin" ];
      in forAllSystems (system: let 
          pkgs = nixpkgs.legacyPackages.${system};
        in {
@@ -68,12 +68,12 @@
        };
      in result.config.home.activationPackage;
 
-     bootstrapNixOS = { system, hostname, grubDevices ? [], diskoDevices ? import "${disko}/example/mdadm.nix" { disks = grubDevices; }, sshPubKey }: 
+     bootstrapNixOS = { system, hostname, grubDevices ? [], diskoDevices ? import "${disko}/example/mdadm.nix" { disks = grubDevices; }, sshPubKey, imports ? [] }: 
       let 
         module = { pkgs, ... }: {
             imports = [
               disko.nixosModules.disko
-            ];
+            ] ++ imports;
 
             config = {
               services.cachix-agent.enable = true;
