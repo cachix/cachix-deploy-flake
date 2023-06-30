@@ -73,12 +73,12 @@
         module = { pkgs, ... }: {
             imports = [
               disko.nixosModules.disko
+              diskoDevices
             ] ++ imports;
 
             config = {
               services.cachix-agent.enable = true;
               networking.hostName = hostname;
-              disko.devices = diskoDevices;
               boot.loader.grub.devices = grubDevices;
               # enable nvme https://github.com/nix-community/disko/issues/96
               boot.initrd.availableKernelModules = [ "nvme" "md_mod" "raid1" ];
