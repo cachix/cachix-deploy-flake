@@ -4,14 +4,14 @@
    darwin.url = "github:LnL7/nix-darwin";
    home-manager.url = "github:nix-community/home-manager";
    home-manager.inputs.nixpkgs.follows = "nixpkgs";
-   nixos-remote.url = "github:numtide/nixos-remote";
-   nixos-remote.inputs.nixpkgs.follows = "nixpkgs";
-   nixos-remote.inputs.disko.follows = "disko";
+   nixos-anywhere.url = "github:numtide/nixos-anywhere";
+   nixos-anywhere.inputs.nixpkgs.follows = "nixpkgs";
+   nixos-anywhere.inputs.disko.follows = "disko";
    disko.url = "github:nix-community/disko";
    disko.inputs.nixpkgs.follows = "nixpkgs";
  };
 
- outputs = { self, nixpkgs, darwin, home-manager, nixos-remote, disko, ... }: {
+ outputs = { self, nixpkgs, darwin, home-manager, nixos-anywhere, disko, ... }: {
 
    packages = let 
        forAllSystems = nixpkgs.lib.genAttrs [ "x86_64-linux" "x86_64-darwin" "aarch64-linux" "aarch64-darwin" ];
@@ -37,7 +37,7 @@
           agent="$2"
           agenttokenpath="$3"
 
-          ${nixos-remote.packages.${system}.default}/bin/nixos-remote "root@$IP" --flake ".#$agent"
+          ${nixos-anywhere.packages.${system}.default}/bin/nixos-remote "root@$IP" --flake ".#$agent"
 
           echo 
           echo "Waiting for machine to reboot..."
