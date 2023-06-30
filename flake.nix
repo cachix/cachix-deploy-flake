@@ -37,7 +37,7 @@
           agent="$2"
           agenttokenpath="$3"
 
-          ${nixos-anywhere.packages.${system}.default}/bin/nixos-remote "root@$IP" --flake ".#$agent"
+          ${nixos-anywhere.packages.${system}.default}/bin/nixos-anywhere "root@$IP" --flake ".#$agent"
 
           echo 
           echo "Waiting for machine to reboot..."
