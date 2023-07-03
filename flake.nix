@@ -79,9 +79,13 @@
             config = {
               services.cachix-agent.enable = true;
               networking.hostName = hostname;
-              boot.loader.grub.devices = grubDevices;
+              boot.loader.grub = {
+                devices = grubDevices;
+                efiSupport = true;
+                efiInstallAsRemovable = true;
+              };
               # enable nvme https://github.com/nix-community/disko/issues/96
-              boot.initrd.availableKernelModules = [ "nvme" "md_mod" "raid1" ];
+              boot.initrd.availableKernelModules = [ "nvme" "md_mod" "raid1" "xhci_pci" "ahci" ];
               
               # add root ssh key
               users.users.root.openssh.authorizedKeys.keys = [ sshPubKey ];
