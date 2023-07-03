@@ -1,6 +1,6 @@
 { lib, disks, ... }:
 {
-  disk = lib.genAttrs disks
+  disko.devices.disk = lib.genAttrs disks
     (disk: {
       type = "disk";
       device = disk;
@@ -38,7 +38,7 @@
         ];
       };
     });
-  mdadm = {
+  disko.devices.mdadm = {
     boot = {
       type = "mdadm";
       level = 1;
