@@ -68,7 +68,7 @@
        };
      in result.config.home.activationPackage;
 
-     bootstrapNixOS = { system, hostname, grubDevices ? [], diskoDevices ? import "${disko}/example/mdadm.nix" { disks = grubDevices; }, sshPubKey, imports ? [] }: 
+     bootstrapNixOS = { system, hostname, grubDevices ? [], diskoDevices ? import ./disko-raid1-uefi.nix { disks = grubDevices; inherit (pkgs) lib; }, sshPubKey, imports ? [] }: 
       let 
         module = { pkgs, ... }: {
             imports = [
