@@ -2,6 +2,7 @@
 
  inputs = {
    darwin.url = "github:LnL7/nix-darwin";
+   darwin.inputs.nixpkgs.follows = "nixpkgs";
    home-manager.url = "github:nix-community/home-manager";
    home-manager.inputs.nixpkgs.follows = "nixpkgs";
    nixos-anywhere.url = "github:numtide/nixos-anywhere";
