@@ -56,10 +56,7 @@
      darwin = module: (darwin.lib.darwinSystem {
        system = pkgs.system;
        inherit pkgs;
-       modules = [
-         (darwin + "/pkgs/darwin-installer/installer.nix")
-         module
-       ];
+       modules = [ module ];
      }).system;
 
      homeManager = { extraSpecialArgs ? { } }: module: let
