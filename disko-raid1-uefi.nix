@@ -1,35 +1,33 @@
-{ lib, disks, ... }:
-{
-  disko.devices.disk = lib.genAttrs disks
-    (disk: {
-      type = "disk";
-      device = disk;
-      content = {
-        type = "gpt";
-        partitions = {
-          boot = {
-            size = "1M";
-            type = "EF02"; # for grub MBR
-            priority = 1;
+{ lib, disks, ... }: {
+  disko.devices.disk = lib.genAttrs disks (disk: {
+    type = "disk";
+    device = disk;
+    content = {
+      type = "gpt";
+      partitions = {
+        boot = {
+          size = "1M";
+          type = "EF02"; # for grub MBR
+          priority = 1;
+        };
+        ESP = {
+          size = "500M";
+          type = "EF00";
+          content = {
+            type = "mdraid";
+            name = "boot";
           };
-          ESP = {
-            size = "500M";
-            type = "EF00";
-            content = {
-              type = "mdraid";
-              name = "boot";
-            };
-          };
-          nixos = {
-            size = "100%";
-            content = {
-              type = "mdraid";
-              name = "nixos";
-            };
+        };
+        nixos = {
+          size = "100%";
+          content = {
+            type = "mdraid";
+            name = "nixos";
           };
         };
       };
-    });
+    };
+  });
   disko.devices.mdadm = {
     boot = {
       type = "mdadm";
