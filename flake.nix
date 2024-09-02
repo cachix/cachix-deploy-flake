@@ -1,5 +1,4 @@
 {
-
  inputs = {
    darwin.url = "github:LnL7/nix-darwin";
    darwin.inputs.nixpkgs.follows = "nixpkgs";
@@ -95,7 +94,7 @@
               # enable ssh
               services.openssh.enable = true;
               # enable passwordless ssh for root 
-              services.openssh.permitRootLogin = "without-password";
+              services.openssh.settings.PermitRootLogin = "without-password";
             };
           };
       in {
